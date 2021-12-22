@@ -8,9 +8,11 @@ export const Content = styled.header`
    max-width: 1120px;
    margin: 0 auto;
 
-   padding: 0 1rem 10rem;
+   /* Unidade de medida REM - tamanho do fonte size do root*/
+   padding: 2rem 1rem 12rem;
    display: flex;
    align-items: center;
+   /* espaco entre todos os item que estao no Content*/
    justify-content: space-between;
 
    button{
