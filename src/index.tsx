@@ -3,11 +3,26 @@ import ReactDOM from 'react-dom';
 import {createServer, Model} from 'miragejs';
 import {App} from './App';
 
-
 createServer({
 
   models: {
     transaction: Model,
+  },
+
+  seeds(server) {
+    server.db.loadData({
+     // sempre o nome do model no plural
+      transactions: [
+        {
+          id: 1,
+          title: 'Frellance',
+          type: 'deposit',
+          category: ' Dev',
+          amount: 6000,
+          createAt: new Date('2021-02-12 09:00:00'),
+        }
+      ],
+    })
   },
 
   routes() {
