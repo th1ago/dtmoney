@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useContext } from "react";
 import { api } from "../../services/api";
 import { Container } from "./styles";
+import { TransactionsContext } from '../../TransactionsContext';
 
 interface Transaction {
     id: number,
@@ -12,6 +14,8 @@ interface Transaction {
 }
 
 export function TransactionsTable(){
+    const data = useContext(TransactionsContext)
+
     // toda vez que for amarzenar uma info se cria um estado
     const [transactions, setTransactions] = useState<Transaction[]>([]);
 
