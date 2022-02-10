@@ -18,7 +18,16 @@ interface TransactionProviderProps {
     children: ReactNode;
 }
 
-export const TransactionsContext = createContext<Transaction[]>([])
+interface TransactionsContextData {
+    transactions: Transaction[];
+    createTransaction: (transaction: TransactionInput) => void;
+
+}
+
+export const TransactionsContext = createContext<TransactionsContextData>(
+    // forca uma tipagem - "n tem problema pois esse valor n 'e utilizado"
+    {} as TransactionsContextData
+)
 
 export function TransactionsProvider({children}: TransactionProviderProps) {
     
@@ -35,7 +44,7 @@ export function TransactionsProvider({children}: TransactionProviderProps) {
     }
 
     return (
-        <TransactionsContext.Provider value={transactions}>
+        <TransactionsContext.Provider value={{transactions, createTransaction}}>
             {children}
         </TransactionsContext.Provider>
     )

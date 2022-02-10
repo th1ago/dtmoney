@@ -12,18 +12,24 @@ interface NewTransactionModalProps {
 }
 
 export function NewTransactionModal({isOpen, onRequestClose}: NewTransactionModalProps) {
-    const transactions = useContext(TransactionsContext)
+    const {createTransaction} = useContext(TransactionsContext)
 
     // toda vez que for amarzenar uma info se cria um estado
     const [type, setType] = useState('deposit');
     const [title, setTitle] = useState('deposit');
-    const [value, setValue] = useState(0);
+    const [amount, setAmount] = useState(0);
     const [category, setCategory] = useState('');
 
     // 'handle' atraves de uma acao do usuario
     function handleCreateNewTransaction(event: FormEvent) {
         event.preventDefault();
 
+        createTransaction({
+            title,
+            amount,
+            category,
+            type
+        })
         
     }
 
@@ -55,9 +61,9 @@ export function NewTransactionModal({isOpen, onRequestClose}: NewTransactionModa
                 <input 
                     type='number' 
                     placeholder='valor'
-                    value={value}
+                    value={amount}
                     // o valor digitado no input 
-                    onChange={event => setValue((Number(event.target.value)))}
+                    onChange={event => setAmount((Number(event.target.value)))}
                 />
 
                 <TransactionTypeContainer>
