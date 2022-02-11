@@ -16,7 +16,7 @@ export function NewTransactionModal({isOpen, onRequestClose}: NewTransactionModa
 
     // toda vez que for amarzenar uma info se cria um estado
     const [type, setType] = useState('deposit');
-    const [title, setTitle] = useState('deposit');
+    const [title, setTitle] = useState('');
     const [amount, setAmount] = useState(0);
     const [category, setCategory] = useState('');
 
@@ -31,6 +31,10 @@ export function NewTransactionModal({isOpen, onRequestClose}: NewTransactionModa
             type
         })
 
+        setTitle('');
+        setType('deposit');
+        setAmount(0);
+        setCategory('');
         onRequestClose();
     }
 
