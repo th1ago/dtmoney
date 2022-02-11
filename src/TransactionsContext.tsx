@@ -23,7 +23,7 @@ interface TransactionsContextData {
 }
 
 export const TransactionsContext = createContext<TransactionsContextData>(
-    // forca uma tipagem - "n tem problema pois esse valor n 'e utilizado"
+    // forca uma tipagem - "nao tem problema pois esse valor nao e' utilizado"
     {} as TransactionsContextData
 )
 
@@ -38,7 +38,7 @@ export function TransactionsProvider({children}: TransactionProviderProps) {
     }, []);
 
     async function createTransaction(transaction: TransactionInput) {
-        await api.post('./transactions', transaction)
+        await api.post('/transactions', transaction)
     }
 
     return (
