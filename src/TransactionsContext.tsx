@@ -1,4 +1,3 @@
-import { type } from "os";
 import { createContext, ReactNode } from "react";
 import { useEffect, useState } from "react";
 import { api } from "./services/api";
