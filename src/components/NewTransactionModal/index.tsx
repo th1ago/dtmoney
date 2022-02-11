@@ -21,16 +21,17 @@ export function NewTransactionModal({isOpen, onRequestClose}: NewTransactionModa
     const [category, setCategory] = useState('');
 
     // 'handle' atraves de uma acao do usuario
-    function handleCreateNewTransaction(event: FormEvent) {
+    async function handleCreateNewTransaction(event: FormEvent) {
         event.preventDefault();
 
-        createTransaction({
+        await createTransaction({
             title,
             amount,
             category,
             type
         })
-        
+
+        onRequestClose();
     }
 
     return (
