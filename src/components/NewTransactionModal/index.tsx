@@ -1,6 +1,6 @@
 import Modal from 'react-modal';
-import { FormEvent, useState, useContext } from 'react';
-import { TransactionsContext } from '../../TransactionsContext';
+import { FormEvent, useState } from 'react';
+import { useTransactions } from '../../hooks/useTransactions';
 
 import incomeImg from '../../assets/income.svg'
 import outcomeImg from '../../assets/outcome.svg'
@@ -14,7 +14,7 @@ interface NewTransactionModalProps {
 }
 
 export function NewTransactionModal({isOpen, onRequestClose}: NewTransactionModalProps) {
-    const {createTransaction} = useContext(TransactionsContext)
+    const {createTransaction} = useTransactions();
 
     // toda vez que for amarzenar uma info se cria um estado
     const [type, setType] = useState('deposit');
@@ -106,4 +106,3 @@ export function NewTransactionModal({isOpen, onRequestClose}: NewTransactionModa
         </Modal>
     )
 }
-
