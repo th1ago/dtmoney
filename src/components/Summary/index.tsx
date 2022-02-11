@@ -8,7 +8,21 @@ import { TransactionsContext } from '../../TransactionsContext';
 export function Summary() {
     const {transactions} = useContext(TransactionsContext)
 
-    console.log(transactions)
+    // acc - acumulador 
+    const summary = transactions.reduce((acc, transaction) => {
+        if(transaction.type === 'deposit') {
+            acc.deposits += transaction.amount;
+            acc.total += transaction.amount;
+        } else {
+            acc.withdraws += transaction.amount;
+            acc.total -= transaction.amount;
+        }
+        return acc;
+    }, {
+        deposits: 0,
+        withdraws: 0,
+        total: 0
+    })
 
     return (
         <Container>
@@ -17,21 +31,21 @@ export function Summary() {
                     <p>Entradas</p>
                     <img src={income} alt="Entradas"/>
                 </header>
-                <strong>R$ 1,000</strong>
+                <strong>{summary.deposits}</strong>
             </div>
             <div>
                 <header>
                     <p>Saida</p>
                     <img src={outcome} alt="Saida"/>
                 </header>
-                <strong>- R$ 500</strong>
+                <strong>{summary.withdraws}</strong>
             </div>
             <div className="highline-background">
                 <header>
                     <p>Total</p>
                     <img src={total} alt="Total"/>
                 </header>
-                <strong>R$ 500</strong>
+                <strong>{summary.total}</strong>
             </div>
         </Container>
     );
